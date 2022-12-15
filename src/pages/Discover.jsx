@@ -6,6 +6,9 @@ import { Error, Loader, SongCard } from "../components";
 //Genres
 import { genres } from "../assets/constants";
 
+//Redux
+import { useGetTopChartsQuery } from "../redux/services/shazamCore";
+
 const Discover = () => {
   const genreTitle = "Pop";
   console.log(genres);

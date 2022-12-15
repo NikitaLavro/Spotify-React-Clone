@@ -1,5 +1,7 @@
 import React from "react";
 
-const SongCard = () => <div>SongCard</div>;
+const SongCard = () => {
+  return <div>SongCard</div>;
+};
 
 export default SongCard;

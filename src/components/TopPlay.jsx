@@ -17,7 +17,14 @@ import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 
-const TopChartCard = ({ song, i }) => (
+const TopChartCard = ({
+  song,
+  i,
+  isPlaying,
+  activeSong,
+  handlePauseClick,
+  handlePlayClick,
+}) => (
   <div className="w-full flex flex-row items-center hover:bg-[#4c4265] py-2 p-4 rounded-lg cursor-pointer mb-2">
     <h3 className="font-bold text-base text-white mr-3">{i + 1}</h3>
     <div className="flex-1 flex flex-row justify-between items-center">
@@ -35,6 +42,13 @@ const TopChartCard = ({ song, i }) => (
         </Link>
       </div>
     </div>
+    <PlayPause
+      isPlaying={isPlaying}
+      activeSong={activeSong}
+      song={song}
+      handlePause={handlePauseClick}
+      handlePlay={() => handlePlayClick(song, i)}
+    />
   </div>
 );
 
@@ -54,7 +68,7 @@ const TopPlay = () => {
     dispatch(playPause(false));
   };
 
-  const handlePlayClick = () => {
+  const handlePlayClick = (song, i) => {
     dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
   };
@@ -73,7 +87,15 @@ const TopPlay = () => {
         </div>
         <div className="mt-4 flex flex-col gap-1">
           {topPlays?.map((song, i) => (
-            <TopChartCard song={song} i={i} key={song.key} />
+            <TopChartCard
+              song={song}
+              key={song.key}
+              i={i}
+              isPlaying={isPlaying}
+              activeSong={activeSong}
+              handlePauseClick={handlePauseClick}
+              handlePlayClick={handlePlayClick}
+            />
           ))}
         </div>
       </div>

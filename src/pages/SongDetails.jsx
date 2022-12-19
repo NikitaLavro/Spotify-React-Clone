@@ -22,7 +22,7 @@ const SongDetails = () => {
   const { data: songData, isFetching: isFetchingSongDetails } =
     useGetSongDetailsQuery(songid);
   const { data, isFetching, isFetchingRelatedSongs, error } =
-    useGetSongDetailsQuery(songid);
+    useGetSongRelatedQuery(songid);
 
   const handlePauseClick = () => {
     dispatch(playPause(false));

@@ -37,6 +37,7 @@ const SongDetails = () => {
           )}
         </div>
       </div>
+      <RelatedSongs />
     </div>
   );
 };

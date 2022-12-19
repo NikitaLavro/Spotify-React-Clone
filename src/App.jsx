@@ -3,7 +3,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 
+import { NoArtist } from "./components/NoArtist";
+
 import { Searchbar, Sidebar, MusicPlayer, TopPlay } from "./components";
+
 import {
   ArtistDetails,
   TopArtists,
@@ -30,7 +33,10 @@ const App = () => {
               <Route path="/top-artists" element={<TopArtists />} />
               <Route path="/top-charts" element={<TopCharts />} />
               <Route path="/around-you" element={<AroundYou />} />
-              <Route path="/artists/:id" element={<ArtistDetails />} />
+              <Route path="/artists">
+                <Route path=":id" element={<ArtistDetails />} />
+                <Route path="no-artist" element={<NoArtist />} />
+              </Route>
               <Route path="/songs/:songid" element={<SongDetails />} />
               <Route path="/search/:searchTerm" element={<Search />} />
             </Routes>

@@ -37,7 +37,13 @@ const TopChartCard = ({
         <Link to={`/songs/${song.key}`}>
           <p className="text-xl font-bold text-white">{song?.title}</p>
         </Link>
-        <Link to={`/artists/${song?.artists[0].adamid}`}>
+        <Link
+          to={
+            song.artists
+              ? `/artists/${song.artists[0].adamid}`
+              : `/artist/no-artist`
+          }
+        >
           <p className="text-base  text-gray-300 mt-1">{song?.subtitle}</p>
         </Link>
       </div>
@@ -72,6 +78,8 @@ const TopPlay = () => {
     dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
   };
+
+  console.log(topPlays);
 
   return (
     <div
@@ -122,9 +130,15 @@ const TopPlay = () => {
               style={{ width: "25%", height: "auto" }}
               className="shadow-lg rounded-full animate-slideright"
             >
-              <Link to={`artists/${song?.artists[0].adamid}`}>
+              <Link
+                to={
+                  song.artists
+                    ? `/artists/${song.artists[0].adamid}`
+                    : `/artists/no-artist`
+                }
+              >
                 <img
-                  src={song?.images.background}
+                  src={song?.images?.background}
                   alt="name"
                   className="rounded-full w-full object-cover"
                 />

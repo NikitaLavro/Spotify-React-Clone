@@ -79,8 +79,6 @@ const TopPlay = () => {
     dispatch(playPause(true));
   };
 
-  console.log(topPlays);
-
   return (
     <div
       ref={divRef}

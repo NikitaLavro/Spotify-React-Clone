@@ -5,35 +5,22 @@ import { useParams } from "react-router-dom";
 
 //Redux
 import { useSelector } from "react-redux";
-import {
-  useGetSongDetailsQuery,
-  useGetSongRelatedQuery,
-} from "../redux/services/shazamCore";
+import { useGetArtistDetailsQuery } from "../redux/services/shazamCore";
 
 //Components
 import { DetailsHeader, Error, Loader, RelatedSongs } from "../components";
 
 const ArtistDetils = () => {
-  const dispatch = useDispatch();
-  const { songid } = useParams();
+  const { artistId } = useParams();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
-  const { data: songData, isFetching: isFetchingSongDetails } =
-    useGetSongDetailsQuery(songid);
-  const { data, isFetching, isFetchingRelatedSongs, error } =
-    useGetSongRelatedQuery(songid);
+  const {
+    data: artistData,
+    isFetching: isFetchingArtistDetails,
+    error,
+  } = useGetSongDetailsQuery(artistId);
 
-  const handlePauseClick = () => {
-    dispatch(playPause(false));
-  };
-
-  const handlePlayClick = (song, i) => {
-    dispatch(setActiveSong({ song, data, i }));
-    dispatch(playPause(true));
-  };
-
-  if (isFetchingSongDetails || isFetchingRelatedSongs)
-    return <Loader title="Searching song details" />;
+  if (isFetchingArtistDetails) return <Loader title="Loading artist details" />;
 
   if (error) return <Error />;
   return (

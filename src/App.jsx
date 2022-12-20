@@ -34,7 +34,7 @@ const App = () => {
               <Route path="/top-charts" element={<TopCharts />} />
               <Route path="/around-you" element={<AroundYou />} />
               <Route path="/artists">
-                <Route path=":id" element={<ArtistDetails />} />
+                <Route path=":artistId" element={<ArtistDetails />} />
                 <Route path="no-artist" element={<NoArtist />} />
               </Route>
               <Route path="/songs/:songid" element={<SongDetails />} />
